@@ -1,0 +1,45 @@
+""" Meera is designing a registration system for her new application. The system collects user details like name, mobile number, username, and password. It validates the password based on specific security rules to ensure it's strong. If the password is valid, the user details are stored in a CSV format and printed. Otherwise, an exception is raised with the message "Your password is weak".
+
+
+
+Password Strength Criteria:
+
+Must contain at least one number.
+Must include at least one uppercase and one lowercase character.
+Must have at least one special symbol from this set: @$!%*#?&.
+Must be 6 to 20 characters long.
+Input format :
+The first line of input consists of the below details in the same order separated by commas
+
+Name, mobile number, username, password (Everything as a String)
+
+Output format :
+The output prints the User Details if the password satisfies the given condition.
+
+If the password does not satisfy the given condition, the output prints"""
+
+import re
+
+inp = input().split(',')
+name = inp[0]
+mob = inp[1]
+username = inp[2]
+pwd = inp[3]
+
+reg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$"
+
+pattern = re.compile(reg)
+match = re.search(pattern, pwd)
+
+try:
+    if match:
+    
+        print('Name:{}'.format(name))
+        print('Mobile:{}'.format(mob))
+        print('Username:{}'.format(username))
+        print('Password:{}'.format(pwd))
+    else:
+        raise Exception('Your password is weak')
+
+except Exception as e :
+    print(e)
